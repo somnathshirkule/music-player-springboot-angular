@@ -21,7 +21,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 jar {  
-	enabled: false
+	enabled= false
     manifest {  
         attributes(  
    
