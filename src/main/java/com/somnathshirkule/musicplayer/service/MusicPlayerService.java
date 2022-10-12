@@ -23,18 +23,14 @@ public class MusicPlayerService {
 	private void loadMusicFiles() {
 		File folder;
 		File[] listOfFiles = null;
-		try {
-			Resource resource = resourceLoader.getResource("musicfolder");
-			folder = resource.getFile();
-			listOfFiles = folder.listFiles();
-			var counter = 0;
-			for (File file : listOfFiles) {
-				int index = counter++;
-				musicFiles.put(index, file);
-				musicFileNames.put(index, file.getName());
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		ClassLoader classloader = Thread.currentThread().getContextClassLoader();
+		folder = new File(classloader.getResource("musicfolder").getPath());
+		listOfFiles = folder.listFiles();
+		var counter = 0;
+		for (File file : listOfFiles) {
+			int index = counter++;
+			musicFiles.put(index, file);
+			musicFileNames.put(index, file.getName());
 		}
 	}
 
