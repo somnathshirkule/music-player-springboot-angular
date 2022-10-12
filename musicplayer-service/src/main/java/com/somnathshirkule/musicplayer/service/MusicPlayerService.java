@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class MusicPlayerService {
 	Map<Integer, File> musicFiles = new HashMap<>();
 	Map<Integer, String> musicFileNames = new HashMap<>();
+	
 	private void loadMusicFiles() {
 		File folder;
 		File[] listOfFiles = null;
@@ -29,7 +30,7 @@ public class MusicPlayerService {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@SuppressWarnings("resource")
 	public byte[] getMusicData(String id) {
 		byte[] data = null;
