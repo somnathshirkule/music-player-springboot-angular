@@ -6,18 +6,26 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 @Service
 public class MusicPlayerService {
 	Map<Integer, File> musicFiles = new HashMap<>();
 	Map<Integer, String> musicFileNames = new HashMap<>();
+	
+	@Autowired
+	ResourceLoader resourceLoader;
+	
 	private void loadMusicFiles() {
 		File folder;
 		File[] listOfFiles = null;
 		try {
-			folder = new ClassPathResource("musicfolder").getFile();
+			Resource resource = resourceLoader.getResource("musicfolder");
+			folder = resource.getFile();
 			listOfFiles = folder.listFiles();
 			var counter = 0;
 			for (File file : listOfFiles) {
