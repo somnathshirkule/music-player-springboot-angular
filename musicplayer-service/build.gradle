@@ -20,7 +20,7 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
-jar {  
+war {  
 	enabled= false
     manifest {  
         attributes(  
